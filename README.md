@@ -1,5 +1,5 @@
 # so_long
-42 project
+42 project  
 A basic 2D computer graphics project developed using the MiniLibX library. The project is designed to help improve skills in window management, event handling, colors, textures and other computer graphics related areas.
 
 ## Status:
