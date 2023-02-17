@@ -9,27 +9,33 @@ RESET = \033[0m
 # Directories
 LIBFT = ./libft
 MLX = ./minilibx
+GNL = ./gnl
 
 # Compiler and flags
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-INC = -I ./inc -I $(LIBFT) -I $(MLX)
+INC = -I ./inc -I $(LIBFT) -I $(MLX) -I $(GNL)
 LIB = -L $(LIBFT) -lft -L $(MLX) -lm -framework OpenGL -framework Appkit
+REMOVE = rm -f
 
 # Source files
-SRC = src/so_long.c
+SRC = src/so_long.c src/validate.c
 
 # Object files
 OBJ = $(SRC:src/%.c=obj/%.o)
+GNL_SRC = $(GNL)/get_next_line_bonus.c $(GNL)/get_next_line_utils_bonus.c
+GNL_OBJ = $(GNL_SRC:$(GNL)/%.c=obj/%.o)
 
 # Binary name
 NAME = so_long
 
 all: header $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(GNL_OBJ)
 	@echo "$(RESET)$(ORANGE)Compiling LIBFT...$(RESET)"
 	make -C $(LIBFT)
+	@echo "$(RESET)$(ORANGE)Compiling Get_next_line...$(RESET)"
+	make -C $(GNL)
 	@echo "$(RESET)$(ORANGE)Compiling $(NAME)...$(RESET)"
 	$(CC) $(CFLAGS) $(INC) -o $@ $^ $(LIB)
 	@echo "$(RESET)$(GREEN)DONE ✓✓$(RESET)"
@@ -40,6 +46,9 @@ $(NAME): $(OBJ)
 # put the result in the obj directory. 
 # The | obj part tells make that the obj directory should be created first if it doesn't exist.
 $(OBJ): obj/%.o : src/%.c | obj
+	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
+
+$(GNL_OBJ): obj/%.o : $(GNL)/%.c | obj
 	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
 
 obj:
@@ -64,12 +73,20 @@ header:
 cleanobj:
 	$(RM) -r obj/
 
-clean: cleanobj
+cleanlib:
+	make clean -C $(LIBFT)
+	make clean -C $(GNL)
+
+fcleanlib:
+	make fclean -C $(LIBFT)
+	make fclean -C $(GNL)
+
+clean: cleanobj cleanlib
 	@echo "$(RESET)$(ORANGE)Cleaning object files...$(RESET)"
 	${REMOVE} $(OBJ)
 	@echo "$(RESET)$(GREEN)CLEANED ✓✓$(RESET)"
 
-fclean: clean
+fclean: clean fcleanlib
 	@echo "$(RESET)$(ORANGE)Cleaning object files and program...$(RESET)"
 	${REMOVE} $(NAME)
 	@echo "$(RESET)$(GREEN)ALL CLEANED ✓✓$(RESET)"
