@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   validate.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 12:11:10 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/02/21 18:22:41 by tgomes-l         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   validate.c										 :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: tgomes-l <tgomes-l@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2023/02/17 12:11:10 by tgomes-l		  #+#	#+#			 */
+/*   Updated: 2023/02/23 16:51:24 by tgomes-l		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
@@ -16,6 +16,12 @@ static int	is_valid_character(char c)
 {
 	if (c == '0' || c == '1' || c == 'C' || c == 'E' || c == 'P' || c == '\n')
 		return (1);
+	else if (c == ' ' || c == '\t')
+	{
+		ft_putstr("Hey there is a tab or a space in the map, please delete it\n");
+		return (0);
+	}
+	ft_putstr("There is an invalid character on the map\n");
 	return (0);
 }
 
@@ -29,57 +35,64 @@ static void	count_game_objects(char c, int *has_start, int *has_collectible, int
 		(*has_exit)++;
 }
 
-static int	is_map_a_rectangle(char *map)
+int is_map_rectangle(char *map)
 {
 	int width;
 	int height;
-	
+	int i;
+	int j;
+
 	width = 0;
 	height = 0;
-	// Find the width and height of the map
-	while (*map != '\0') {
-		if (*map == '\n') {
-			// Found end of row
-			if (width == 0) {
-				// This is the first row, set the width
-				width = map - (height * (width + 1) + map) + 1;
-			} else if (map - ((height - 1) * (width + 1) + map) != width) {
-				// The current row is not the same length as the first row
-				return (0);
-			}
-			height++;
-		}
-		map++;
+	i = 0;
+	//calculates widht and height of the map
+	while (map[i] != '\0')
+	{
+		j = i;
+		//width of the current row
+		while (map[j] != '\n' && map[j] != '\0')
+			j++;
+		if (width == 0)
+			width = j - i;
+		else if (width != j - i) //line with diferent width
+			return (0);
+		i = j + 1; //move to the begining of the next row
+		height++;
 	}
-	// Check if the map is a rectangle
-	if (width == 0 || height < 2) {
-		// Map is not a rectangle if it has only one row
+	//check last line
+	j = i - width;
+	while (j < i && map[j] != '\n')
+		j++;
+	if (j < i)
 		return (0);
-	} else if (map - ((height - 1) * (width + 1) + map) != width) {
-		// Last row is not the same length as the first row
-		return (0);
-	} else if (map - (height * (width + 1)) != 0) {
-		// Map is not rectangular if it does not start at top left
-		return (0);
-	}
 	return (1);
 }
 
 int	is_map_valid(char *map)
 {
-    int has_start = 0;
-    int has_collectible = 0;
-    int has_exit = 0;
+	int has_start = 0;
+	int has_collectible = 0;
+	int has_exit = 0;
+	int i = 0;
 
-    // Check if the map is valid and count game objects
-    while (*map != '\0') {
-        if (!is_valid_character(*map))
-            return (0);
-        map++;
-    }
-    // Check if the map is a rectangle
-    if (!is_map_a_rectangle(map))
-        return (0);
-    // Check that there is exactly one start and at least one collectible and exit
-    return (has_start == 1 && has_collectible > 0 && has_exit > 0);
+	// Check if the map is valid and count game objects
+	while (map[i] != '\0') {
+		if (!is_valid_character(map[i]))
+			return (0);
+		count_game_objects(map[i], &has_start, &has_collectible, &has_exit);
+		i++;
+	}
+	// Check if the map is a rectangle
+	if (!is_map_rectangle(map))
+		{
+			ft_putstr("The map is not a rectangle or there is some space/tab outside of the map\n");
+			return (0);
+		}
+	// Check that there is exactly one start and at least one collectible and exit
+	if (has_start != 1 || has_collectible == 0 || has_exit == 0)
+		{
+			ft_putstr("Please check that you have one player, an exit and a collectable\n");
+			return (0);
+		}
+	return(1);
 }

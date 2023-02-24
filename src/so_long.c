@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/02/20 19:55:42 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:07:10 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	reading_file(char *buffer)
 {
 	char	**line;
 	int		line_number = 1;
+	void	*mlx;
+	void	*mlx_win;
 	
 	line = ft_split(buffer, '\n');
 	while (line != NULL && *line != NULL)
@@ -28,6 +30,9 @@ static int	reading_file(char *buffer)
 		line_number++;
 		line++;
 	}
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_loop(mlx);
 	return (0);
 }
 
@@ -54,11 +59,11 @@ int manage_fd(char *filename)
 	    return (1);
 	}
 	buf[num_read] = '\0';
-    if (!is_map_valid(buf))
-    {
-        free(buf);
-        return (1);
-    }
+   	if (!is_map_valid(buf))
+   	{
+   	    free(buf);
+   	    return (1);
+   	}
     reading_file(buf);
     free(buf);
     close(fd);

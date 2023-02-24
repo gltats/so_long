@@ -15,7 +15,12 @@ GNL = ./gnl
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 INC = -I ./inc -I $(LIBFT) -I $(MLX) -I $(GNL)
-LIB = -L $(LIBFT) -lft -L $(MLX) -lm -framework OpenGL -framework Appkit
+LIB = -L $(LIBFT) -lft -L $(MLX) -lmlx #maybe -lmlx instead of lm, check when passing minilibx
+ifeq ($(shell uname -s),Darwin)
+	LIB +=  -framework OpenGL -framework Appkit
+else
+	LIB += -lX11 -LXext
+endif
 REMOVE = rm -f
 
 # Source files
