@@ -68,6 +68,57 @@ int is_map_rectangle(char *map)
 	return (1);
 }
 
+int is_map_closed(char *map)
+{
+	int width;
+	int height;
+	int length_sum;
+	int i;
+	int j;
+
+	width = 0;
+	height = 0;
+	i = 0;
+	//calculates widht and height of the map
+	while (map[i] != '\0')
+	{
+		j = i;
+		//width of the current row
+		while (map[j] != '\n' && map[j] != '\0')
+			j++;
+		if (width == 0)
+			width = j - i;
+		else if (width != j - i) //line with diferent width
+			return (0);
+		height++;
+		i = j + 1; //move to the begining of the next row
+	}
+	
+	i = 0;
+	while (i < width)//top wall
+	{
+		if(map[i] != '1')
+			return(0);
+		i++;
+	}
+	i = (height - 1) * (width) + 1;
+	length_sum = height * width;
+	while (i <= length_sum) // bottom wall
+	{
+		if (map[i] == '0' || map[i] == 'E' || map[i] == 'C' || map[i] == 'P')
+			return (0);
+		i++;
+	}
+	// i = 1;
+	// while (i < height - 1) // left and right walls
+	// {
+	// 	if (map[i * width] != '1' || map[i * width + width - 1] != '1')
+	// 		return (0);
+	// 	i++;
+	// }
+	return(1);
+}
+
 int	is_map_valid(char *map)
 {
 	int has_start = 0;
@@ -86,6 +137,12 @@ int	is_map_valid(char *map)
 	if (!is_map_rectangle(map))
 		{
 			ft_putstr("The map is not a rectangle or there is some space/tab outside of the map\n");
+			return (0);
+		}
+		// Check if the map the map closed with walls / 1
+	if (!is_map_closed(map))
+		{
+			ft_putstr("The map is not closed\n");
 			return (0);
 		}
 	// Check that there is exactly one start and at least one collectible and exit
