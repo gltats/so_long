@@ -35,7 +35,7 @@ static void	count_game_objects(char c, int *has_start, int *has_collectible, int
 		(*has_exit)++;
 }
 
-int is_map_rectangle(char *map)
+static int is_map_rectangle(char *map)
 {
 	int width;
 	int height;
@@ -109,13 +109,18 @@ int is_map_closed(char *map)
 			return (0);
 		i++;
 	}
-	// i = 1;
-	// while (i < height - 1) // left and right walls
-	// {
-	// 	if (map[i * width] != '1' || map[i * width + width - 1] != '1')
-	// 		return (0);
-	// 	i++;
-	// }
+	//not working part
+	printf("total lenght %i\n", length_sum);
+	i = 1;
+	i = width;
+	printf("height: %i, with: %i, index: %i\n", height, width, i);
+	while (i < length_sum - width) // left wall, height: 5, with: 16, index: 1
+	{
+		//if (map[i] == '0')
+		//	return (0);
+		printf("height: %i, with: %i, index: %i\n", height, width, i);
+		i = i + width;
+	}
 	return(1);
 }
 

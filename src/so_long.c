@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gltats <gltats@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/02/24 15:07:10 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/02/25 13:44:14 by gltats           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int	reading_file(char *buffer)
 {
 	char	**line;
 	int		line_number = 1;
-	void	*mlx;
-	void	*mlx_win;
+	// void	*mlx;
+	// void	*mlx_win;
 	
 	line = ft_split(buffer, '\n');
 	while (line != NULL && *line != NULL)
@@ -30,9 +30,9 @@ static int	reading_file(char *buffer)
 		line_number++;
 		line++;
 	}
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	mlx_loop(mlx);
+	// mlx = mlx_init();
+	// mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	// mlx_loop(mlx);
 	return (0);
 }
 

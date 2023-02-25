@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gltats <gltats@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 15:08:11 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/02/16 10:14:16 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:39:34 by gltats           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr(char *s);
 void			ft_putstr_fd(char *s, int fd);
 char			**ft_split(char *s, char c);
-char			*ft_strchr(const char *s, int c);
+char			*ft_strchr(char *s, int c);
 char			*ft_strdup(char *s1);
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 char			*ft_strjoin(char const *s1, char const *s2);
@@ -56,7 +56,7 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int				ft_strcmp(char *s1, char *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			*ft_strnstr(const char *bg, const char *sm, size_t len);
-char			*ft_strrchr(const char *s, int c);
+char			*ft_strrchr(char *s, int c);
 char			*ft_strcpy(char *dest, char *src);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strtrim(char const *s1, char const *set);
