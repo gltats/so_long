@@ -109,19 +109,15 @@ int is_map_closed(char *map)
 			return (0);
 		i++;
 	}
-	//not working part
-	printf("total lenght %i\n", length_sum);
-	i = 1;
-	i = width;
-	printf("height: %i, with: %i, index: %i\n", height, width, i);
-	while (i < length_sum - width) // left wall, height: 5, with: 16, index: 1
+	//left side
+	i = 1 + width;
+	while (i < length_sum) 
 	{
-		//if (map[i] == '0')
-		//	return (0);
-		printf("height: %i, with: %i, index: %i\n", height, width, i);
-		i = i + width;
+	    if (map[i] != '1')
+			return (0);
+		i += width + 1;
 	}
-	return(1);
+	return (1);
 }
 
 int	is_map_valid(char *map)
