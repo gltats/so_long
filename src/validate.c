@@ -68,74 +68,6 @@ static int is_map_rectangle(char *map)
 	return (1);
 }
 
-int is_map_closed(char *map)
-{
-	int width;
-	int height;
-	int length_sum;
-	int i;
-	int j;
-
-	width = 0;
-	height = 0;
-	i = 0;
-	//calculates widht and height of the map
-	while (map[i] != '\0')
-	{
-		j = i;
-		//width of the current row
-		while (map[j] != '\n' && map[j] != '\0')
-			j++;
-		if (width == 0)
-			width = j - i;
-		else if (width != j - i) //line with diferent width
-			return (0);
-		height++;
-		i = j + 1; //move to the begining of the next row
-	}
-	
-	i = 0;
-	while (i < width)//top wall
-	{
-		if(map[i] != '1')
-			return(0);
-		i++;
-	}
-
-	length_sum = height * width;
-	//printf("total map:%i\n", length_sum);
-	//i = height;
-	//printf("index:%i, width:%i, height:%i\n", i, width, height);
-	//while (i < length_sum) // bottom wall
-	//{
-	//	printf("index:%i, width:%i, height:%i\n", i, width, height);
-	//	if (map[i] != '1')
-	//		return (0);
-	//	i++;
-	//}
-
-
-	//left side
-	i = 1 + width;
-	while (i < length_sum) 
-	{
-	    if (map[i] != '1')
-			return (0);
-		i += width + 1;
-	}
-	//right side
-	i = width - 1;
-	while (i < length_sum)
-	{
-		if (map[i] != '1')
-		{
-			return (0);
-		}
-		i += width + 1;
-	}
-	return (1);
-}
-
 int	is_map_valid(char *map)
 {
 	int has_start = 0;
@@ -158,10 +90,7 @@ int	is_map_valid(char *map)
 		}
 		// Check if the map the map closed with walls / 1
 	if (!is_map_closed(map))
-		{
-			ft_putstr("The map is not closed\n");
 			return (0);
-		}
 	// Check that there is exactly one start and at least one collectible and exit
 	if (has_start != 1 || has_collectible == 0 || has_exit == 0)
 		{
