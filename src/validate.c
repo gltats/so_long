@@ -101,20 +101,36 @@ int is_map_closed(char *map)
 			return(0);
 		i++;
 	}
-	i = (height - 1) * (width) + 1;
+
 	length_sum = height * width;
-	while (i <= length_sum) // bottom wall
-	{
-		if (map[i] == '0' || map[i] == 'E' || map[i] == 'C' || map[i] == 'P')
-			return (0);
-		i++;
-	}
+	//printf("total map:%i\n", length_sum);
+	//i = height;
+	//printf("index:%i, width:%i, height:%i\n", i, width, height);
+	//while (i < length_sum) // bottom wall
+	//{
+	//	printf("index:%i, width:%i, height:%i\n", i, width, height);
+	//	if (map[i] != '1')
+	//		return (0);
+	//	i++;
+	//}
+
+
 	//left side
 	i = 1 + width;
 	while (i < length_sum) 
 	{
 	    if (map[i] != '1')
 			return (0);
+		i += width + 1;
+	}
+	//right side
+	i = width - 1;
+	while (i < length_sum)
+	{
+		if (map[i] != '1')
+		{
+			return (0);
+		}
 		i += width + 1;
 	}
 	return (1);
