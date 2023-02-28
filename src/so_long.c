@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/02/27 18:14:03 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/02/28 14:24:23 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ static int	reading_file(char *buffer)
 	char	**line;
 	int		line_number = 1;
 	void	*mlx;
-	void	*mlx_win;
-	t_data	pict;
+	void	*win;
+	void *img;
+	int img_width;
+	int img_height;
 	
 	line = ft_split(buffer, '\n');
 	while (line != NULL && *line != NULL)
@@ -29,9 +31,9 @@ static int	reading_file(char *buffer)
 		line++;
 	}
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "So_long");
-	pict.img = mlx_new_image(mlx, 1920, 1080);
-	mlx_put_image_to_window(mlx, mlx_win, pict.img, 0, 0);
+	win = mlx_new_window(mlx, 500, 500, "so_long");
+	img = mlx_xpm_file_to_image(mlx, "./textures/wall.xpm", &img_width, &img_height);
+	mlx_put_image_to_window(mlx, win, img, 0, 0);
 	mlx_loop(mlx);
 	return (0);
 }
