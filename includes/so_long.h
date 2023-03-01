@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:04:34 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/02/27 18:02:01 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/01 10:20:26 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@
 # define WALL "./textures/wall.xpm"
 # define CHERRY "./textures/cherry.xpm"
 
+# define X_EVENT_KEY_PRESS			2
+# define X_EVENT_KEY_RELEASE		3
+
+# define KEY_ESC		53
+# define KEY_W			13
+# define KEY_A			0
+# define KEY_S			1
+# define KEY_D			2
+
+typedef struct s_param{
+	int		x;
+	int		y;
+}	t_param;
+
 typedef struct s_data
 {
 	void 	*img;
@@ -42,8 +56,10 @@ typedef struct s_data
 	
 }	t_data;
 
-int is_map_valid(char *map);
-int manage_fd(char *filename);
-int is_map_closed(char *map);
+int 	is_map_valid(char *map);
+int 	manage_fd(char *filename);
+int 	is_map_closed(char *map);
+//int		key_press(int keycode, t_param *param);
+//void	handle_mlx_graphics();
 
 #endif

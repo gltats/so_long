@@ -52,19 +52,21 @@ static int is_map_rectangle(char *map)
 		//width of the current row
 		while (map[j] != '\n' && map[j] != '\0')
 			j++;
+		printf("iM J %d \n", j);
 		if (width == 0)
 			width = j - i;
 		else if (width != j - i) //line with diferent width
 			return (0);
 		i = j + 1; //move to the begining of the next row
-		height++;
+	//	height++;
+	//}
+	////check last line
+	//j = i - width;
+	//while (j < i && map[j] != '\n')
+	//	j++;
+	//if (j < i)
+	//	return (0);
 	}
-	//check last line
-	j = i - width;
-	while (j < i && map[j] != '\n')
-		j++;
-	if (j < i)
-		return (0);
 	return (1);
 }
 
