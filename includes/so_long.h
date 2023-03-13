@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:04:34 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/01 10:20:26 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:16:34 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
-# include "../gnl/get_next_line_bonus.h"
 # include "../minilibx/mlx.h"
 
 # define BACKG "./textures/background.xpm"
@@ -30,7 +29,7 @@
 # define P_RIGHT "./textures/pacman_right.xpm"
 # define EXIT "./textures/door.xpm"
 # define WALL "./textures/wall.xpm"
-# define CHERRY "./textures/cherry.xpm"
+# define COLLECTIBLE "./textures/cherry.xpm"
 
 # define X_EVENT_KEY_PRESS			2
 # define X_EVENT_KEY_RELEASE		3
@@ -41,10 +40,10 @@
 # define KEY_S			1
 # define KEY_D			2
 
-typedef struct s_param{
+typedef struct s_map{
 	int		x;
 	int		y;
-}	t_param;
+}	t_map;
 
 typedef struct s_data
 {
@@ -59,7 +58,8 @@ typedef struct s_data
 int 	is_map_valid(char *map);
 int 	manage_fd(char *filename);
 int 	is_map_closed(char *map);
+void	calculate_dimensions(char *map, int *width, int *height);
 //int		key_press(int keycode, t_param *param);
-//void	handle_mlx_graphics();
+void	handle_mlx_graphics();
 
 #endif

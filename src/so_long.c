@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/01 10:20:11 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:41:33 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	reading_file(char *buffer)
 		line_number++;
 		line++;
 	}
-	//handle_mlx_graphics();
+	handle_mlx_graphics();
 	return(0);
 }
 
