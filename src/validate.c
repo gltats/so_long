@@ -52,20 +52,12 @@ static int is_map_rectangle(char *map)
 		//width of the current row
 		while (map[j] != '\n' && map[j] != '\0')
 			j++;
-		printf("iM J %d \n", j);
 		if (width == 0)
 			width = j - i;
 		else if (width != j - i) //line with diferent width
 			return (0);
 		i = j + 1; //move to the begining of the next row
-	//	height++;
-	//}
-	////check last line
-	//j = i - width;
-	//while (j < i && map[j] != '\n')
-	//	j++;
-	//if (j < i)
-	//	return (0);
+		height++;
 	}
 	return (1);
 }
@@ -84,13 +76,13 @@ int	is_map_valid(char *map)
 		count_game_objects(map[i], &has_start, &has_collectible, &has_exit);
 		i++;
 	}
-	// Check if the map is a rectangle
+	//Check if the map is a rectangle
 	if (!is_map_rectangle(map))
 		{
 			ft_putstr("The map is not a rectangle or there is some space/tab outside of the map\n");
 			return (0);
 		}
-		// Check if the map the map closed with walls / 1
+	// Check if the map the map closed with walls / 1
 	if (!is_map_closed(map))
 			return (0);
 	// Check that there is exactly one start and at least one collectible and exit

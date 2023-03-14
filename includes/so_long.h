@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:04:34 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/13 18:16:34 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/14 15:29:37 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_data
 	
 }	t_data;
 
-int 	is_map_valid(char *map);
+int	is_map_valid(char *map);
 int 	manage_fd(char *filename);
 int 	is_map_closed(char *map);
 void	calculate_dimensions(char *map, int *width, int *height);

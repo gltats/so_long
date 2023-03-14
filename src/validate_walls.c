@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:44:52 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/13 17:54:30 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/14 15:56:56 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,16 @@ static int botton_wall(char *map, int width, int height)
 	int	i;
 	int	length_sum;
 
+	width = width + 1;
 	length_sum = height * width;
-	i = (length_sum - width) * 2;
-	{   
+	i = length_sum - width;
+	while (i < length_sum)
+	{    
 		if (map[i] == '0' || map[i] == 'P' || map[i] == 'C' || map[i] == 'E')
 			return (0);
 		i++;
 	}
+	
 	
 	return(1);
 }

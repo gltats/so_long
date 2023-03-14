@@ -39,7 +39,7 @@ endif
 REMOVE = rm -f
 
 # Source files
-SRC = src/so_long.c src/validate.c src/validate_walls.c src/game.c #src/keys.c
+SRC = src/so_long.c src/validate.c src/game.c src/validate_walls.c #src/keys.c src/validate_walls.c 
 
 # Object files
 OBJ = $(SRC:src/%.c=obj/%.o)

@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/13 12:41:33 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/14 15:58:38 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int manage_fd(char *filename)
 		perror("open");
 		return(1);
 	}
-	buf = (char *)malloc(sizeof(char) * 256);
+	buf = (char *)malloc(sizeof(char) * 1200);
 	if (buf == NULL)
  		perror("malloc");
-	num_read = read(fd, buf, 256);
+	num_read = read(fd, buf, 1200);
 	if (num_read == -1)
 	{
 	    perror("read");
