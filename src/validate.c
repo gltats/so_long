@@ -35,26 +35,42 @@ static void	count_game_objects(char c, int *has_start, int *has_collectible, int
 		(*has_exit)++;
 }
 
-static int is_map_rectangle(char **map)
+static int is_map_rectangle(char *map)
 {
-	int	rows;
-	int	cols;
-	
-	rows = 0;
-	while (map[rows])
+	int width;
+	int height;
+	int i;
+	int j;
+
+	width = 0;
+	height = 0;
+	i = 0;
+	//calculates widht and height of the map
+	while (map[i] != '\0')
 	{
-		cols = 0;
-		while (map[rows][cols])
-			cols++;
-			printf("%c", 65);
-		if (rows > 0 && cols != (int)ft_strlen(map[rows - 1]))
+		j = i;
+		//width of the current row
+		while (map[j] != '\n' && map[j] != '\0')
+			j++;
+		printf("iM J %d \n", j);
+		if (width == 0)
+			width = j - i;
+		else if (width != j - i) //line with diferent width
 			return (0);
-		rows++;
+		i = j + 1; //move to the begining of the next row
+	//	height++;
+	//}
+	////check last line
+	//j = i - width;
+	//while (j < i && map[j] != '\n')
+	//	j++;
+	//if (j < i)
+	//	return (0);
 	}
 	return (1);
 }
 
-int	is_map_valid(char **map)
+int	is_map_valid(char *map)
 {
 	int has_start = 0;
 	int has_collectible = 0;
@@ -69,7 +85,7 @@ int	is_map_valid(char **map)
 		i++;
 	}
 	// Check if the map is a rectangle
-	if (!is_map_rectangle(&map))
+	if (!is_map_rectangle(map))
 		{
 			ft_putstr("The map is not a rectangle or there is some space/tab outside of the map\n");
 			return (0);
