@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/14 15:58:38 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:01:20 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@ static int	reading_file(char *buffer)
 {
 	char	**line;
 	int		line_number = 1;
-	
+	t_data	data;
 	line = ft_split(buffer, '\n');
+	int i;
+
+	i = 0;
 	while (line != NULL && *line != NULL)
 	{
 		ft_putstr(*line);
+		data.temp_map
 		ft_putstr("\n");
 		line_number++;
 		line++;
@@ -34,7 +38,6 @@ int manage_fd(char *filename)
 	int     fd;
 	char    *buf;
 	ssize_t num_read;
-
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
@@ -66,7 +69,6 @@ int manage_fd(char *filename)
 int	main(int argc, char **argv)
 {
 	char	*dot;
-	
 	if (argc != 2)
 	{
 		ft_putstr("Please execute ./so_long with a map as argument, example: ./so_long maps/map.ber\n");

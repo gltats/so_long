@@ -6,59 +6,64 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 23:34:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/14 16:12:46 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:38:10 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	handle_mlx_graphics()
+void	ft_free_all(t_data *data)
 {
-	void	*mlx;
-	void	*win;
-	int		img_width;
-	int		img_height;
-	//t_param	param;
-
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 500, 500, "so_long");
-	//mlx_hook(win, X_EVENT_KEY_RELEASE, 0, &key_press, &param);
-	// Load images
-	void	*background = mlx_xpm_file_to_image(mlx, BACKG, &img_width, &img_height);
-	void	*player_up = mlx_xpm_file_to_image(mlx, P_UP, &img_width, &img_height);
-	void	*player_down = mlx_xpm_file_to_image(mlx, P_DOWN, &img_width, &img_height);
-	void	*player_left = mlx_xpm_file_to_image(mlx, P_LEFT, &img_width, &img_height);
-	void	*player_right = mlx_xpm_file_to_image(mlx, P_RIGHT, &img_width, &img_height);
-	void	*exit = mlx_xpm_file_to_image(mlx, EXIT, &img_width, &img_height);
-	void	*wall = mlx_xpm_file_to_image(mlx, WALL, &img_width, &img_height);
-	void	*collectible = mlx_xpm_file_to_image(mlx, COLLECTIBLE, &img_width, &img_height);
-	
-	// Draw images
-	mlx_put_image_to_window(mlx, win, background, 0, 0); // Background
-	mlx_put_image_to_window(mlx, win, player_up, 100, 100); // Player up
-	mlx_put_image_to_window(mlx, win, player_down, 200, 100); // Player down
-	mlx_put_image_to_window(mlx, win, player_left, 300, 100); // Player left
-	mlx_put_image_to_window(mlx, win, player_right, 400, 100); // Player right
-	mlx_put_image_to_window(mlx, win, exit, 100, 200); // Exit
-	mlx_put_image_to_window(mlx, win, wall, 200, 200); // Wall
-	mlx_put_image_to_window(mlx, win, collectible, 300, 200); // Collectible
-	
-	mlx_loop(mlx);
-	//return (0);
+	int	i;
+	i = 0;
+	if (data->map1)
+		free(data->map1);
+	if (data->map2)
+	{
+		while (data->map2[i])
+		{
+			free(data->map2[i]);
+			i++;
+		}
+		free(data->map2);
+	}
 }
 
-//static void	game_init(t_game *g, char *map)
-//{
-//	g->mlx = mlx_init();
-//	g->img = img_init(g->mlx);
-//	map_read(map, g);
-//	map_check(g);
-//	g->win = mlx_new_window(g->mlx, g->wid * 64, g->hei * 64, "so_long");
-//	setting_img(g);
-//}
+void	ft_free_mlx(t_data *data)
+{
+	mlx_destroy_image(data->mlx, data->backg);
+	mlx_destroy_image(data->mlx, data->collectible);
+	mlx_destroy_image(data->mlx, data->wall);
+	mlx_destroy_image(data->mlx, data->exit);
+	mlx_destroy_image(data->mlx, data->p_right);
+	mlx_destroy_image(data->mlx, data->p_up);
+	mlx_destroy_image(data->mlx, data->p_left);
+	mlx_destroy_image(data->mlx, data->p_down);
+	mlx_destroy_window(data->mlx, data->window);
+	free(data->mlx);
+}
 
-//int	exit_game(t_game *game)
-//{
-//	mlx_destroy_window(game->mlx, game->win);
-//	exit(0);
-//}
+int	ft_close_window(t_data *data)
+{
+	ft_free_mlx(data);
+	ft_free_all(data);
+	exit(EXIT_SUCCESS);
+	return (0);
+}
+
+void	handle_mlx_graphics()
+{
+	t_data	*data;
+	
+	data = (t_data *)ft_calloc(sizeof(t_data), 1);
+	data->mlx = mlx_init();
+	ft_check_validmap(data, data->ply_x, data->ply_y);
+	printf("hoi\n");
+	ft_check_path(data);
+	printf("ehehi\n");
+	ft_in_image(data);
+	printf("heeei\n");
+	mlx_hook(data->window, 2, 1L << 0, ft_key_event, data);
+	mlx_hook(data->window, 17, 1L << 2, ft_close_window, data);
+	mlx_loop(data->mlx);
+}
