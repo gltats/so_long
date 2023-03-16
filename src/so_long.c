@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/16 13:29:29 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/16 17:55:00 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static char	*reading_file(char *buffer)
 
 int manage_fd(char *filename)
 {
-	int     fd;
-	char    *buf;
-	t_data 	*data;
+	int     		fd;
+	char    		*buf;
+	static t_data 	*data;
 	ssize_t num_read;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -56,14 +56,15 @@ int manage_fd(char *filename)
 	    return (1);
 	}
 	buf[num_read] = '\0';
-   	if (!is_map_valid(buf))
+	data = (t_data *)ft_calloc(sizeof(t_data), 1);
+	data->map = buf;
+   	if (!is_map_valid(buf, &data))
    	{
    	    free(buf);
    	    return (1);
    	}
-	data = (t_data *)ft_calloc(sizeof(t_data), 1);
-	data->map1 = reading_file(buf);
-	handle_mlx_graphics(data);
+	data->map = reading_file(buf);
+	//handle_mlx_graphics(data);
     free(buf);
     close(fd);
 	return (0);
