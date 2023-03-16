@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 23:34:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/15 18:38:10 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:31:47 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,11 @@ int	ft_close_window(t_data *data)
 	return (0);
 }
 
-void	handle_mlx_graphics()
+void	handle_mlx_graphics(t_data	*data)
 {
-	t_data	*data;
-	
-	data = (t_data *)ft_calloc(sizeof(t_data), 1);
 	data->mlx = mlx_init();
 	ft_check_validmap(data, data->ply_x, data->ply_y);
+	
 	printf("hoi\n");
 	ft_check_path(data);
 	printf("ehehi\n");

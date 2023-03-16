@@ -6,37 +6,38 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/15 19:01:20 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:29:29 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static int	reading_file(char *buffer)
+static char	*reading_file(char *buffer)
 {
 	char	**line;
+	char	*map;
 	int		line_number = 1;
-	t_data	data;
-	line = ft_split(buffer, '\n');
-	int i;
 
-	i = 0;
+	line = ft_split(buffer, '\n');
+	
+	map = ft_strdup("");
 	while (line != NULL && *line != NULL)
 	{
 		ft_putstr(*line);
-		data.temp_map
 		ft_putstr("\n");
+		map = ft_strjoin(map, *line);
+		map = ft_strjoin(map, "\n");
 		line_number++;
 		line++;
 	}
-	handle_mlx_graphics();
-	return(0);
+	return(map);
 }
 
 int manage_fd(char *filename)
 {
 	int     fd;
 	char    *buf;
+	t_data 	*data;
 	ssize_t num_read;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -60,7 +61,9 @@ int manage_fd(char *filename)
    	    free(buf);
    	    return (1);
    	}
-    reading_file(buf);
+	data = (t_data *)ft_calloc(sizeof(t_data), 1);
+	data->map1 = reading_file(buf);
+	handle_mlx_graphics(data);
     free(buf);
     close(fd);
 	return (0);

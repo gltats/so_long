@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:04:34 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/15 19:10:46 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:22:12 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ typedef struct s_data
 	int		collectible_count;
 	int		exit_count;
 	int		player_count;
-	int		ply[2];
+	int		ply_x;
+	int		ply_y;
 	int		map_x;
 	int		map_y;
 	int		tmp_collectible_count;
