@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:04:34 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/16 18:46:06 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:56:02 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,71 +43,46 @@
 typedef struct s_data
 {
 	void	*mlx;
-	void	*backg;
 	void	*window;
-	void	*p_up;
-	void	*p_down;
-	void	*p_left;
-	void	*p_right;
-	// void	*start;
+	void	*backg;
+	void	*wall;
 	int		start;//eran void,nuevo
 	int		collectible;//eran void,nuevo
 	int		exit;//eran void,nuevo
-	void	*wall;
-	char	*move_count_screen; //for score
-	int		move_count;; //for score
-	char	curr_pos;
-	int		img_y;
-	int		img_x;
 	char	*map;//nuevo
-	char	*map1;
-	char	**map2;
-	char	**tmp_map2;
-	int		collectible_count;
-	int		exit_count;
-	int		player_count;
-	int		ply_x;
-	int		ply_y;
-	int		map_x;
-	int		map_y;
 	int		map_height;//nuevo
 	int		map_width;//nuevo
-	//int		lenght_sum;//nuevo
-	int		tmp_collectible_count;
-	int		valid_exit;
-	int		ex_y;
-	int		ex_x;
+	int		temp_map_width;
+	int		temp_map_height;
+	
 }	t_data;
 
 //so_long.c
 int 	manage_fd(char *filename);
 //validate.c
-//int		is_map_valid(char *map);
 int		is_map_valid(char *map, t_data **data);
 //validate_walls.c
-//void	calculate_dimensions(char *map, int *width, int *height);
-//int 	is_map_closed(char *map);
 int		is_map_closed(t_data **data);
-////game.c
-//void	handle_mlx_graphics();
-//int	ft_close_window(t_data *data);
-//void	ft_free_mlx(t_data *data);
-//void	ft_free_all(t_data *data);
-////screen_render.c
-//void	ft_in_image(t_data *data);
-//void	ft_put_image(t_data *data);
-//void	ft_put_image_player(t_data *data, int x, int y);
-//void	ft_xy_oper(int *x, int *y, t_data *data);
-////keys.c
-//int		ft_key_event(int key, t_data *data);
-//void	ft_check_right(int key, t_data *data);
-//void	ft_check_left(int key, t_data *data);
-//void	ft_check_down(int key, t_data *data);
-//void	ft_check_up(int key, t_data *data);
-////validate_path.c
-//void	ft_check_path(t_data *data);
-//void	ft_check_validmap(t_data *data, int x, int y);
-////movements.c
-//int		ft_check_mov(t_data *data, int x, int y);
-//void	ft_render_after_move(t_data *data);
+//game.c
+void	handle_mlx_graphics();
+// int		ft_close_window(t_data **data);
+// void	ft_free_mlx(t_data **data);
+// void	ft_free_all(t_data **data);
+//screen_render.c
+// void	ft_in_image(t_data **data);
+// void	ft_put_image(t_data **data);
+// void	ft_put_image_player(t_data **data, int x, int y);
+// void	ft_xy_oper(int *x, int *y, t_data **data);
+//keys.c
+// int		ft_key_event(int key, t_data **data);
+// void	ft_check_right(int key, t_data **data);
+// void	ft_check_left(int key, t_data **data);
+// void	ft_check_down(int key, t_data **data);
+// void	ft_check_up(int key, t_data **data);
+//validate_path.c
+void	ft_check_path(t_data *data);
+void	ft_check_validmap(t_data *data, int x, int y);
+//movements.c
+// int		ft_check_mov(t_data *data, int x, int y);
+// void	ft_render_after_move(t_data *data);
 #endif

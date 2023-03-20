@@ -28,9 +28,9 @@ GNL = ./gnl
 
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 INC = -I ./inc -I $(LIBFT) -I $(MLX) -I $(GNL)
-LIB = -L $(LIBFT) -lft -L $(MLX) -lmlx #maybe -lmlx instead of lm, check when passing minilibx
+LIB = -L $(LIBFT) -fsanitize=address -lft -L $(MLX) -lmlx #maybe -lmlx instead of lm, check when passing minilibx
 ifeq ($(shell uname -s),Darwin)
 	LIB +=  -framework OpenGL -framework Appkit
 else
@@ -39,8 +39,8 @@ endif
 REMOVE = rm -f
 
 # Source files
-SRC = src/so_long.c src/validate.c src/validate_walls.c #src/game.c src/screen_render.c \
-		src/keys.c src/validate_path.c src/movements.c
+SRC = src/so_long.c src/validate.c src/validate_walls.c src/game.c src/validate_path.c
+#src/screen_render.c src/keys.c src/movements.c
 
 # Object files
 OBJ = $(SRC:src/%.c=obj/%.o)
