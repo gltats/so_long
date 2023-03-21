@@ -33,7 +33,6 @@ static void	count_game_objects(char c, t_data **data)
 		((*data)->collectible)++;
 	else if (c == 'E')
 		((*data)->exit)++;
-	
 }
 
 static int is_map_rectangle(t_data **data)
@@ -42,8 +41,8 @@ static int is_map_rectangle(t_data **data)
 	int j;
 	i = 0;
 	//calculates widht and height of the map
-	while ((*data)->map[i] != '\0')
-	{
+		while ((*data)->map[i] != '\0')
+		{
 		j = i;
 		//width of the current row
 		while ((*data)->map[j] != '\n' && (*data)->map[j] != '\0')

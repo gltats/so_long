@@ -6,37 +6,38 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:00:54 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/20 20:31:02 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/21 21:23:45 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// void	ft_score(t_data *data)
-// {
-// 	data->move_count_screen = ft_itoa(data->move_count);
-// 	mlx_string_put(data->mlx, data->window, 30, 30, 0xFFFFFF, \
-// 	"Move: ");
-// 	mlx_string_put(data->mlx, data->window, 65, 30, 0xFFFFFF, \
-// 		data->move_count_screen);
-// 	free(data->move_count_screen);
-// }
+void	ft_score(t_data *data)
+{
+	data->move_count_screen = ft_itoa(data->move_count);
+	mlx_string_put(data->mlx, data->window, 30, 30, 0xff00ff, \
+	"Moves: ");
+	mlx_string_put(data->mlx, data->window, 65, 30, 0xff00ff, \
+		data->move_count_screen);
+	free(data->move_count_screen);
+}
+
 void	ft_xy_oper(int *x, int *y, t_data *data)
 {
-	if (*x == data->map_width * 64)
+	if (*x == data->map_width * 32)
 	{
-		*x = -64;
-		*y += 64;
+		*x = -32;
+		*y += 32;
 	}
-	*x += 64;
+	*x += 32;
 }
 
 void	ft_put_image_player(t_data *data, int x, int y)
 {
-	if (data->curr_pos == 'R')
-		mlx_put_image_to_window(data->mlx, data->window, data->p_right, x, y);
-	else if (data->curr_pos == 'U')
+	if (data->curr_pos == 'U')
 		mlx_put_image_to_window(data->mlx, data->window, data->p_up, x, y);
+	else if (data->curr_pos == 'R')
+		mlx_put_image_to_window(data->mlx, data->window, data->p_right, x, y);
 	else if (data->curr_pos == 'L')
 		mlx_put_image_to_window(data->mlx, data->window, data->p_left, x, y);
 	else if (data->curr_pos == 'D')
@@ -47,48 +48,49 @@ void	ft_put_image(t_data *data)
 {
 	int	x;
 	int	y;
+	
 	x = 0;
 	y = 0;
 	while (y < data->map_height * 64)
 	{
-		if (data->map[(y / 64) + (x / 64)] != '1'
-			&& data->map[(y / 64) + (x / 64)] != '0')
+		if (data->map_2d[y / 64][x / 64] != '1'
+			&& data->map_2d[y / 64][x / 64] != '0')
 			mlx_put_image_to_window(data->mlx, data->window, data->backg, x, y);
-		if (data->map[(y / 64) + (x / 64)] == '1')
+		if (data->map_2d[y / 64][x / 64] == '1')
 			mlx_put_image_to_window(data->mlx, data->window, data->wall, x, y);
-		else if (data->map[(y / 64) + (x / 64)] == '0')
+		else if (data->map_2d[y / 64][x / 64] == '0')
 			mlx_put_image_to_window(data->mlx, data->window, data->backg, x, y);
-		else if (data->map[(y / 64) + (x / 64)] == 'E')
-			mlx_put_image_to_window(data->mlx, data->window, &data->exit, x, y);
-		else if (data->map[(y / 64) + (x / 64)] == 'C')
-			mlx_put_image_to_window(data->mlx, data->window, &data->collectible, x, y);
-		else if (data->map[(y / 64) + (x / 64)] == 'P')
+		else if (data->map_2d[y / 64][x / 64] == 'E')
+			mlx_put_image_to_window(data->mlx, data->window, data->exit, x, y);
+		else if (data->map_2d[y / 64][x / 64] == 'C')
+			mlx_put_image_to_window(data->mlx, data->window, data->collectible, x, y);
+		else if (data->map_2d[y / 64][x / 64] == 'P')
 			ft_put_image_player(data, x, y);
 		ft_xy_oper(&x, &y, data);
 	}
-	//ft_score(data);
+	ft_score(data);
 }
 
 void ft_in_image(t_data *data)
 {
-	data->p_right = mlx_xpm_file_to_image(data->mlx, P_RIGHT,
-			&data->img_x, &data->img_y);
-	data->p_left = mlx_xpm_file_to_image(data->mlx, P_LEFT,
-			&data->img_x, &data->img_y);
-	data->p_left = mlx_xpm_file_to_image(data->mlx, P_LEFT,
-			&data->img_x, &data->img_y);
 	data->p_up = mlx_xpm_file_to_image(data->mlx, P_UP,
 			&data->img_x, &data->img_y);
 	data->p_down = mlx_xpm_file_to_image(data->mlx, P_DOWN,
 			&data->img_x, &data->img_y);
-	data->backg = mlx_xpm_file_to_image(data->mlx, BACKG,
+	data->p_left = mlx_xpm_file_to_image(data->mlx, P_LEFT,
 			&data->img_x, &data->img_y);
-	data->wall = mlx_xpm_file_to_image(data->mlx, WALL,
+	data->p_right = mlx_xpm_file_to_image(data->mlx, P_RIGHT,
+			&data->img_x, &data->img_y);
+	data->backg = mlx_xpm_file_to_image(data->mlx, BACKG,
 			&data->img_x, &data->img_y);
 	data->collectible = mlx_xpm_file_to_image(data->mlx, COLLECTIBLE,
 			&data->img_x, &data->img_y);
-	data->window = mlx_new_window(data->mlx, data->map_width * 64, \
-		data->map_height * 64, "so_long");
-	data->curr_pos = 'R';
+	data->exit = mlx_xpm_file_to_image(data->mlx, EXIT,
+			&data->img_x, &data->img_y);
+	data->wall = mlx_xpm_file_to_image(data->mlx, WALL,
+			&data->img_x, &data->img_y);
+	data->window = mlx_new_window(data->mlx, data->map_x * 64, \
+		data->map_y * 64, "so_long");
+	data->curr_pos = 'F';
 	ft_put_image(data);
 }

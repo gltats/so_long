@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:04:34 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/20 20:21:22 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/21 21:03:27 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,19 @@
 # define WALL "./textures/wall.xpm"
 # define COLLECTIBLE "./textures/cherry.xpm"
 
-# define X_EVENT_KEY_PRESS			2
-# define X_EVENT_KEY_RELEASE		3
-
-# define KEY_ESC		53
-# define KEY_W			13
-# define KEY_A			0
-# define KEY_S			1
-# define KEY_D			2
+# define KEY_ESC			53
+# define KEY_W				13
+# define KEY_A				0
+# define KEY_S				1
+# define KEY_D				2
+# define KEY_W_LOW			119
+# define KEY_A_LOW			97
+# define KEY_S_LOW			115
+# define KEY_D_LOW			100
+# define KEY_UP_A			126
+# define KEY_DOWN_A			125
+# define KEY_LEFT_A			123
+# define KEY_RIGHT_A		124
 
 typedef struct s_data
 {
@@ -50,10 +55,22 @@ typedef struct s_data
 	void	*p_up;
 	void	*p_left;
 	void	*p_down;
+	int		ply_x;
+	int		ply_y;
+	int		ply_count;
 	int		start;//eran void,nuevo
-	int		collectible;//eran void,nuevo
-	int		exit;//eran void,nuevo
+	void	*collectible;//eran void,nuevo
+	int		tmp_collectible;
+	void	*exit;//eran void,nuevo
+	int		ex_y;
+	int		ex_x;
+	int		ex_counter;
+	int		valid_ex;
 	char	*map;//nuevo
+	char	**map_2d;
+	char	**tmp_map_2d;
+	int		map_x;
+	int		map_y;
 	int		map_height;//nuevo
 	int		map_width;//nuevo
 	int		temp_map_width;
@@ -73,20 +90,22 @@ int		is_map_valid(char *map, t_data **data);
 int		is_map_closed(t_data **data);
 //game.c
 void	handle_mlx_graphics();
-int		ft_close_window(t_data **data);
-void	ft_free_mlx(t_data **data);
-void	ft_free_all(t_data **data);
+int		ft_close_window(t_data *data);
+void	ft_free_mlx(t_data *data);
+void	ft_free_all(t_data *data);
 //screen_render.c
 void	ft_in_image(t_data *data);
 void	ft_put_image(t_data *data);
 void	ft_put_image_player(t_data *data, int x, int y);
 void	ft_xy_oper(int *x, int *y, t_data *data);
 //keys.c
-int		ft_key_event(int key, t_data **data);
-void	ft_check_right(int key, t_data **data);
-void	ft_check_left(int key, t_data **data);
-void	ft_check_down(int key, t_data **data);
-void	ft_check_up(int key, t_data **data);
+int		ft_key_event(int key, t_data *data);
+void	ft_check_right(int key, t_data *data);
+void	ft_check_left(int key, t_data *data);
+void	ft_check_down(int key, t_data *data);
+void	ft_check_up(int key, t_data *data);
+void	exit_count(t_data *data, int i, int j);
+void	init_player(t_data *data, int i, int j);
 //validate_path.c
 void	ft_check_path(t_data *data);
 void	ft_check_validmap(t_data *data, int x, int y);

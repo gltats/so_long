@@ -6,20 +6,33 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/20 17:51:25 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:54:31 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static char	*reading_file(char *buffer)
+static char	*reading_file(t_data *data, char *buffer)
 {
 	char	**line;
 	char	*map;
 	int		line_number = 1;
-
-	line = ft_split(buffer, '\n');
+	int		len_line;
+	int		len;
+	int		counter;
 	
+	len = 0;
+	counter = 0;
+	data->map_2d = ft_split(buffer, '\n');
+	line = data->map_2d;
+	len_line = ft_strlen(data->map_2d[0]);
+	while (data->map_2d[counter])
+	{
+		len++;
+		counter++;
+	}
+	data->map_y = len;
+	data->map_x = len_line;
 	map = ft_strdup("");
 	while (line != NULL && *line != NULL)
 	{
@@ -63,7 +76,7 @@ int manage_fd(char *filename)
    	    free(buf);
    	    return (1);
    	}
-	data->map = reading_file(buf);
+	data->map = reading_file(data, buf);
 	handle_mlx_graphics(&data);
     free(buf);
     close(fd);
