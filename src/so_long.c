@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/21 20:54:31 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/23 09:37:10 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int manage_fd(char *filename)
    	    return (1);
    	}
 	data->map = reading_file(data, buf);
-	handle_mlx_graphics(&data);
+	handle_mlx_graphics(data);
     free(buf);
     close(fd);
 	return (0);

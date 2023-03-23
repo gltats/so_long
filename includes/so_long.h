@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:04:34 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/21 21:03:27 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:53:50 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define P_DOWN "./textures/pacman_down.xpm"
 # define P_LEFT "./textures/pacman_left.xpm"
 # define P_RIGHT "./textures/pacman_right.xpm"
-# define EXIT "./textures/door.xpm"
+# define EXIT "./textures/portal.xpm"
 # define WALL "./textures/wall.xpm"
 # define COLLECTIBLE "./textures/cherry.xpm"
 
@@ -89,7 +89,7 @@ int		is_map_valid(char *map, t_data **data);
 //validate_walls.c
 int		is_map_closed(t_data **data);
 //game.c
-void	handle_mlx_graphics();
+void	handle_mlx_graphics(t_data	*data);
 int		ft_close_window(t_data *data);
 void	ft_free_mlx(t_data *data);
 void	ft_free_all(t_data *data);
