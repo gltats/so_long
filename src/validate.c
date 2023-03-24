@@ -62,6 +62,12 @@ static int is_map_rectangle(t_data **data)
 int	is_map_valid(char *map, t_data **data)
 {
 	int i = 0;
+	// Check if the map is empty
+	if ((*data)->map[i] == 0)
+	{
+		ft_putstr("The map is empty\n");
+		return (0);
+	} 
 	// Check if the map is valid and count game objects
 	while ((*data)->map[i] != '\0') {
 		if (!is_valid_character(map[i]))

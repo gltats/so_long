@@ -6,12 +6,13 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:00:54 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/23 13:58:29 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:13:46 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+// Display the number of moves on the game window.
 void	ft_score(t_data *data)
 {
 	data->move_count_screen = ft_itoa(data->move_count);
@@ -32,6 +33,7 @@ void	ft_xy_oper(int *x, int *y, t_data *data)
 	*x += 32;
 }
 
+// Display the player's image based on their current position.
 void	ft_put_image_player(t_data *data, int x, int y)
 {
 	if (data->curr_pos == 'U')
@@ -53,6 +55,7 @@ void	ft_put_image(t_data *data)
 	y = 0;
 	while (y < data->map_y * 32)
 	{
+		// Display the appropriate image based on the current element in the map_2d array.
 		if (data->map_2d[y / 32][x / 32] == '1')
 			mlx_put_image_to_window(data->mlx, data->window, data->wall, x, y);
 		else if (data->map_2d[y / 32][x / 32] == '0')
@@ -63,6 +66,7 @@ void	ft_put_image(t_data *data)
 			mlx_put_image_to_window(data->mlx, data->window, data->collectible, x, y);
 		else if (data->map_2d[y / 32][x / 32] == 'P')
 			ft_put_image_player(data, x, y);
+			//mlx_put_image_to_window(data->mlx, data->window, data->p_right, x, y);
 		else
 			mlx_put_image_to_window(data->mlx, data->window, data->backg, x, y);
 		ft_xy_oper(&x, &y, data);
@@ -81,6 +85,6 @@ void ft_in_image(t_data *data)
 	data->exit = mlx_xpm_file_to_image(data->mlx, EXIT, &data->img_x, &data->img_y);
 	data->wall = mlx_xpm_file_to_image(data->mlx, WALL,&data->img_x, &data->img_y);
 	data->window = mlx_new_window(data->mlx, data->map_x * 32, data->map_y * 32, "so_long");
-	data->curr_pos = 'F';
+	data->curr_pos = 'U';
 	ft_put_image(data);
 }

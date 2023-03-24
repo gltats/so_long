@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:04:34 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/23 13:53:50 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/24 09:55:54 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 # include "../minilibx/mlx.h"
 
 # define BACKG "./textures/background.xpm"
-# define P_UP "./textures/pacman_up.xpm"
-# define P_DOWN "./textures/pacman_down.xpm"
-# define P_LEFT "./textures/pacman_left.xpm"
-# define P_RIGHT "./textures/pacman_right.xpm"
+# define P_UP "./textures/pacman_up.xpm"//fe
+# define P_DOWN "./textures/pacman_down.xpm"//be
+# define P_LEFT "./textures/pacman_left.xpm"//le
+# define P_RIGHT "./textures/pacman_right.xpm"//re
 # define EXIT "./textures/portal.xpm"
 # define WALL "./textures/wall.xpm"
 # define COLLECTIBLE "./textures/cherry.xpm"
