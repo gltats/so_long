@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:04:59 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/24 14:32:39 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:30:17 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	ft_check_mov(t_data *data, int x, int y)
 		}
 		else if (data->map_2d[y][x] == 'E' && data->collectible != 0)
 			return (2);
-		printf("Move: %d\n", ++(data->move_count));
 		return (1);
 	}
 	return (0);

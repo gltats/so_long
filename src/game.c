@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 23:34:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/24 12:50:32 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:04:07 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	handle_mlx_graphics(t_data	*data)
 	//ft_check_validmap(data, data->map_width, data->map_height);
 	//ft_check_path(data);
 	ft_in_image(data);
-	mlx_hook(data->window, 2, 1L << 0, ft_key_event, data);
-	mlx_hook(data->window, 17, 1L << 2, ft_close_window, data);
+	ft_get_player(data);
+	mlx_hook(data->window, 17, 0, ft_close_window, data);
+	mlx_hook(data->window, 2, 0, ft_key_event, data);
 	mlx_loop(data->mlx);
 }

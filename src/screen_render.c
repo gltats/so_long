@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:00:54 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/24 16:13:46 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:05:07 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,6 @@ void	ft_score(t_data *data)
 	mlx_string_put(data->mlx, data->window, 65, 30, 0xff00ff, \
 		data->move_count_screen);
 	free(data->move_count_screen);
-}
-
-void	ft_xy_oper(int *x, int *y, t_data *data)
-{
-	if (*x == data->map_x * 32)
-	{
-		*x = -32;
-		*y += 32;
-	}
-	*x += 32;
 }
 
 // Display the player's image based on their current position.
@@ -51,25 +41,27 @@ void	ft_put_image(t_data *data)
 	int	x;
 	int	y;
 	
-	x = 0;
 	y = 0;
-	while (y < data->map_y * 32)
+	//x=columns, y=rows
+	// Display the appropriate image based on the current element in the map_2d array.
+	while (y < data->map_y)
 	{
-		// Display the appropriate image based on the current element in the map_2d array.
-		if (data->map_2d[y / 32][x / 32] == '1')
-			mlx_put_image_to_window(data->mlx, data->window, data->wall, x, y);
-		else if (data->map_2d[y / 32][x / 32] == '0')
-			mlx_put_image_to_window(data->mlx, data->window, data->backg, x, y);
-		else if (data->map_2d[y / 32][x / 32] == 'E')
-			mlx_put_image_to_window(data->mlx, data->window, data->exit, x, y);
-		else if (data->map_2d[y / 32][x / 32] == 'C')
-			mlx_put_image_to_window(data->mlx, data->window, data->collectible, x, y);
-		else if (data->map_2d[y / 32][x / 32] == 'P')
-			ft_put_image_player(data, x, y);
-			//mlx_put_image_to_window(data->mlx, data->window, data->p_right, x, y);
-		else
-			mlx_put_image_to_window(data->mlx, data->window, data->backg, x, y);
-		ft_xy_oper(&x, &y, data);
+		x = 0;
+		while (x < data->map_x)
+		{
+			if (data->map_2d[y][x] == '1')
+				mlx_put_image_to_window(data->mlx, data->window, data->wall, x * 32, y * 32);
+			else if (data->map_2d[y][x] == '0')
+				mlx_put_image_to_window(data->mlx, data->window, data->backg, x * 32, y * 32);
+			else if (data->map_2d[y][x] == 'E')
+				mlx_put_image_to_window(data->mlx, data->window, data->exit, x * 32, y * 32);
+			else if (data->map_2d[y][x] == 'C')
+				mlx_put_image_to_window(data->mlx, data->window, data->collectible, x * 32, y * 32);
+			else if (data->map_2d[y][x] == 'P')
+				mlx_put_image_to_window(data->mlx, data->window, data->p_up, x * 32, y * 32);
+			x++;
+		}
+		y++;
 	}
 	ft_score(data);
 }

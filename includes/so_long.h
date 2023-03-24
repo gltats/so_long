@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:04:34 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/24 09:55:54 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:16:38 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,11 @@ void	ft_put_image_player(t_data *data, int x, int y);
 void	ft_xy_oper(int *x, int *y, t_data *data);
 //keys.c
 int		ft_key_event(int key, t_data *data);
-void	ft_check_right(int key, t_data *data);
-void	ft_check_left(int key, t_data *data);
-void	ft_check_down(int key, t_data *data);
-void	ft_check_up(int key, t_data *data);
-void	exit_count(t_data *data, int i, int j);
-void	init_player(t_data *data, int i, int j);
+void	ft_check_right(t_data *data);
+void	ft_check_left(t_data *data);
+void	ft_check_down(t_data *data);
+void	ft_check_up(t_data *data, int y, int x);
+void	ft_get_player(t_data *data);
 //validate_path.c
 void	ft_check_path(t_data *data);
 void	ft_check_validmap(t_data *data, int x, int y);

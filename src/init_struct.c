@@ -6,27 +6,37 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:53:05 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/24 09:53:39 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:03:27 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-void	exit_count(t_data *data, int i, int j)
-{
-	if (data->map_2d[i][j] == 'E')
-	{
-		data->ex_counter++;
-		data->ex_x = j;
-		data->ex_y = i;
-	}
-}
 
-void	init_player(t_data *data, int i, int j)
+void	ft_get_player(t_data *data)
 {
-	if (data->map_2d[i][j] == 'P')
+	int	x;
+	int	y;
+	
+	y = 0;
+	//x=columns, y=rows
+	// Display the appropriate image based on the current element in the map_2d array.
+	while (y < data->map_y)
 	{
-		data->ply_count++;
-		data->ply_x = j;
-		data->ply_y = i;
+		x = 0;
+		while (x < data->map_x)
+		{
+			if (data->map_2d[y][x] == 'E')
+			{
+				data->ex_x = x;
+				data->ex_y = y;
+			}
+			else if (data->map_2d[y][x] == 'P')
+			{
+				data->ply_x = x;
+				data->ply_y = y;
+			}
+			x++;
+		}
+		y++;
 	}
 }
