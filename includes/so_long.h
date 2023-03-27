@@ -6,7 +6,7 @@
 /*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:04:34 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/24 18:16:38 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:31:27 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,6 @@ void	ft_get_player(t_data *data);
 void	ft_check_path(t_data *data);
 void	ft_check_validmap(t_data *data, int x, int y);
 //movements.c
-int		ft_check_mov(t_data *data, int x, int y);
+int		ft_check_mov(t_data *data);
 void	ft_render_after_move(t_data *data);
 #endif
