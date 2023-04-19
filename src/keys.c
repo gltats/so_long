@@ -6,7 +6,7 @@
 /*   By: tatianasofiagomeslima <tatianasofiagome    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 17:54:11 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/04/19 23:35:32 by tatianasofi      ###   ########.fr       */
+/*   Updated: 2023/04/19 23:43:15 by tatianasofi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	ft_check_up(t_data *data, int y, int x)
 		if(data->map_2d[data->ply_y + y][data->ply_x + x] == '1')
 			return;
 		if (data->map_2d[data->ply_y + y][data->ply_x + x] == 'C')
-			data->tmp_collectible--; 
+			data->tmp_collectible--;
+		data->move_count++;
 		data->map_2d[data->ply_y][data->ply_x] = '0';
 		data->ply_y += y;
 		data->ply_x += x;
