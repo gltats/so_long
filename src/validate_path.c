@@ -16,7 +16,7 @@ void	ft_check_validmap(t_data *data, int x, int y)
 {
 	char	*p;
 	data->tmp_map_2d = data->map_2d;
-	data->tmp_collectible = (int)data->collectible;
+	data->tmp_collectible = (intptr_t)data->collectible;
 	p = &data->tmp_map_2d[y][x];
 	if (x < 0 || y < 0 || x >= data->map_width || y >= data->map_height)
     	return;

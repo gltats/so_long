@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tatianasofiagomeslima <tatianasofiagome    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:00:54 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/24 18:05:07 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/04/19 23:39:51 by tatianasofi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,17 @@ void	ft_put_image(t_data *data)
 				mlx_put_image_to_window(data->mlx, data->window, data->wall, x * 32, y * 32);
 			else if (data->map_2d[y][x] == '0')
 				mlx_put_image_to_window(data->mlx, data->window, data->backg, x * 32, y * 32);
-			else if (data->map_2d[y][x] == 'E')
-				mlx_put_image_to_window(data->mlx, data->window, data->exit, x * 32, y * 32);
 			else if (data->map_2d[y][x] == 'C')
 				mlx_put_image_to_window(data->mlx, data->window, data->collectible, x * 32, y * 32);
+			else if (data->map_2d[y][x] == 'E')
+				mlx_put_image_to_window(data->mlx, data->window, data->exit, x * 32, y * 32);
 			else if (data->map_2d[y][x] == 'P')
-				mlx_put_image_to_window(data->mlx, data->window, data->p_up, x * 32, y * 32);
+				ft_put_image_player(data, x * 32, y * 32);
+			// Check if the player is on the exit tile
+			if (data->ply_y == y && data->ply_x == x && data->map_2d[data->ex_y][data->ex_x] == 'E')
+				ft_put_image_player(data, x * 32, y * 32);
+			else if (data->map_2d[y][x] == 'P')
+				ft_put_image_player(data, x * 32, y * 32);
 			x++;
 		}
 		y++;

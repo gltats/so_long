@@ -64,6 +64,8 @@ typedef struct s_data
 	void	*exit;//eran void,nuevo
 	int		ex_y;
 	int		ex_x;
+	int		col_x;
+	int		col_y;
 	int		ex_counter;
 	int		valid_ex;
 	char	*map;//nuevo

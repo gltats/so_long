@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tatianasofiagomeslima <tatianasofiagome    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/23 09:37:10 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/04/19 23:35:22 by tatianasofi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static char	*reading_file(t_data *data, char *buffer)
 {
 	char	**line;
 	char	*map;
-	int		line_number = 1;
 	int		len_line;
 	int		len;
 	int		counter;
@@ -40,7 +39,6 @@ static char	*reading_file(t_data *data, char *buffer)
 		ft_putstr("\n");
 		map = ft_strjoin(map, *line);
 		map = ft_strjoin(map, "\n");
-		line_number++;
 		line++;
 	}
 	return(map);

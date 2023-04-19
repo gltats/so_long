@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tatianasofiagomeslima <tatianasofiagome    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 17:54:11 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/27 18:46:56 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/04/19 23:35:32 by tatianasofi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,18 @@ void	ft_check_up(t_data *data, int y, int x)
 {
 		if(data->map_2d[data->ply_y + y][data->ply_x + x] == '1')
 			return;
-		else
-		{
-			ft_check_mov(data);
-			data->map_2d[data->ply_y][data->ply_x] = '0';
-			data->ply_y += y;
-			data->ply_x += x;
-			data->map_2d[data->ply_y][data->ply_x] = 'P';
-			data->map_2d[data->ex_y][data->ex_x] = 'E';
-			data->curr_pos = 'U';
-			ft_render_after_move(data);
-		}	
+		if (data->map_2d[data->ply_y + y][data->ply_x + x] == 'C')
+			data->tmp_collectible--; 
+		data->map_2d[data->ply_y][data->ply_x] = '0';
+		data->ply_y += y;
+		data->ply_x += x;
+		data->map_2d[data->ply_y][data->ply_x] = 'P';
+		data->map_2d[data->ex_y][data->ex_x] = 'E';
+		if (y == -1) data->curr_pos = 'U';
+		else if (y == 1) data->curr_pos = 'D';
+		else if (x == -1) data->curr_pos = 'L';
+		else if (x == 1) data->curr_pos = 'R';
+		ft_check_mov(data);
+		ft_render_after_move(data);
+
 }
-		//if ((ft_check_mov(data, data->ply_x, data->ply_y - 1)) == 1)
-		//{
-		//	data->map_2d[data->ply_y][data->ply_x] = '0';
-		//	data->ply_y -= 1;
-		//	data->map_2d[data->ply_y][data->ply_x] = 'P';
-		//	//data->map_2d[data->ex_y][data->ex_x] = 'E';
-		//	data->curr_pos = 'U';
-		//	ft_render_after_move(data);
-		//}
-		//else if ((ft_check_mov(data, data->ply_x, data->ply_y - 1)) == 2)
-		//{
-		//	data->map_2d[data->ply_y][data->ply_x] = '0';
-		//	data->ply_y -= 1;
-		//	data->map_2d[data->ply_y][data->ply_x] = 'P';
-		//	data->curr_pos = 'U';
-		//	ft_render_after_move(data);
-		//}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tatianasofiagomeslima <tatianasofiagome    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:53:05 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/24 18:03:27 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/04/19 20:22:04 by tatianasofi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ void	ft_get_player(t_data *data)
 			{
 				data->ply_x = x;
 				data->ply_y = y;
+			}
+			else if (data->map_2d[y][x] == 'C') // Count the collectibles
+			{
+				data->tmp_collectible++;
 			}
 			x++;
 		}
