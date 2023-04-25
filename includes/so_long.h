@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgomes-l <tgomes-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tatianasofiagomeslima <tatianasofiagome    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:04:34 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/03/27 18:31:27 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:36:57 by tatianasofi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_data
 	int		start;//eran void,nuevo
 	void	*collectible;//eran void,nuevo
 	int		tmp_collectible;
+	int		total_collectible;
 	void	*exit;//eran void,nuevo
 	int		ex_y;
 	int		ex_x;
@@ -71,6 +72,7 @@ typedef struct s_data
 	char	*map;//nuevo
 	char	**map_2d;
 	char	**tmp_map_2d;
+	//char 	**tmp_map2d;
 	int		map_x;
 	int		map_y;
 	int		map_height;//nuevo
@@ -108,6 +110,7 @@ void	ft_check_down(t_data *data);
 void	ft_check_up(t_data *data, int y, int x);
 void	ft_get_player(t_data *data);
 //validate_path.c
+void	create_map_copy(t_data *data);
 void	ft_check_path(t_data *data);
 void	ft_check_validmap(t_data *data, int x, int y);
 //movements.c
