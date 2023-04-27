@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgomes-l <tgomes-l@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: tgomes-l <tgomes-l@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 23:34:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/04/27 18:25:08 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:44:33 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_free_all(t_data *data)
 void	ft_free_mlx(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->backg);
-	mlx_destroy_image(data->mlx, data->collectible);
+	mlx_destroy_image(data->mlx, data->colect);
 	mlx_destroy_image(data->mlx, data->wall);
 	mlx_destroy_image(data->mlx, data->exit);
 	mlx_destroy_image(data->mlx, data->p_right);

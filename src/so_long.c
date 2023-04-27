@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgomes-l <tgomes-l@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: tgomes-l <tgomes-l@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/04/27 18:49:13 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/04/27 22:29:18 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static char	*reading_file(t_data *data, char *buffer)
 {
-	char	**line;
 	char	*map;
 	int		len_line;
 	int		len;
@@ -23,7 +22,6 @@ static char	*reading_file(t_data *data, char *buffer)
 	len = 0;
 	counter = 0;
 	data->map_2d = ft_split(buffer, '\n');
-	line = data->map_2d;
 	len_line = ft_strlen(data->map_2d[0]);
 	while (data->map_2d[counter])
 	{
@@ -33,30 +31,15 @@ static char	*reading_file(t_data *data, char *buffer)
 	data->map_y = len;
 	data->map_x = len_line;
 	map = ft_strdup("");
-	while (line != NULL && *line != NULL)
-	{
-		ft_putstr(*line);
-		ft_putstr("\n");
-		map = ft_strjoin(map, *line);
-		map = ft_strjoin(map, "\n");
-		line++;
-	}
 	return (map);
 }
 
-int	manage_fd(char *filename)
+t_data	*read_and_validate_map(int fd)
 {
-	int				fd;
-	char			*buf;
-	static t_data	*data;
-	ssize_t			num_read;
+	char	*buf;
+	t_data	*data;
+	ssize_t	num_read;
 
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-	{
-		perror("open");
-		return (1);
-	}
 	buf = (char *)malloc(sizeof(char) * 1200);
 	if (buf == NULL)
 		perror("malloc");
@@ -65,7 +48,7 @@ int	manage_fd(char *filename)
 	{
 		perror("read");
 		free(buf);
-		return (1);
+		return (NULL);
 	}
 	buf[num_read] = '\0';
 	data = (t_data *)ft_calloc(sizeof(t_data), 1);
@@ -73,11 +56,30 @@ int	manage_fd(char *filename)
 	if (!is_map_valid(buf, &data))
 	{
 		free(buf);
-		return (1);
+		return (NULL);
 	}
 	data->map = reading_file(data, buf);
+	return (data);
+}
+
+int	manage_fd(char *filename)
+{
+	int		fd;
+	t_data	*data;
+
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("open");
+		return (1);
+	}
+	data = read_and_validate_map(fd);
+	if (data == NULL)
+	{
+		return (1);
+	}
 	handle_mlx_graphics(data);
-	free(buf);
+	free(data->map);
 	close(fd);
 	return (0);
 }

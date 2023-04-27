@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgomes-l <tgomes-l@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: tgomes-l <tgomes-l@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:04:59 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/04/27 18:34:19 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:59:10 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	ft_check_mov(t_data *data)
 {
-	if (data->tmp_collectible == 0 && data->ply_y == data->ex_y && data->ply_x == data->ex_x)
+	if (data->tmp_collectible == 0 && data->ply_y == data->ex_y
+		&& data->ply_x == data->ex_x)
 	{
 		ft_putstr("Congratulations!\n");
 		ft_free_mlx(data);

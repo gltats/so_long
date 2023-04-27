@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgomes-l <tgomes-l@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: tgomes-l <tgomes-l@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:04:34 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/04/27 18:16:44 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/04/27 22:19:43 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_data
 	int		ply_y;
 	int		ply_count;
 	int		start;
-	void	*collectible;
+	void	*colect;
 	int		tmp_collectible;
 	int		total_collectible;
 	void	*exit;
@@ -101,6 +101,12 @@ void	ft_in_image(t_data *data);
 void	ft_put_image(t_data *data);
 void	ft_put_image_player(t_data *data, int x, int y);
 void	ft_xy_oper(int *x, int *y, t_data *data);
+//screen_render_utils.c
+void	ft_put_image_wall(t_data *data, int x, int y);
+void	ft_put_image_backg(t_data *data, int x, int y);
+void	ft_put_image_colect(t_data *data, int x, int y);
+void	ft_put_image_exit(t_data *data, int x, int y);
+void	ft_put_image_player_cond(t_data *data, int x, int y);
 //keys.c
 int		ft_key_event(int key, t_data *data);
 void	ft_check_right(t_data *data);

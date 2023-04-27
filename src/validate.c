@@ -30,7 +30,7 @@ static void	count_game_objects(char c, t_data **data)
 	if (c == 'P')
 		((*data)->start)++;
 	else if (c == 'C')
-		((*data)->collectible)++;
+		((*data)->colect)++;
 	else if (c == 'E')
 		((*data)->exit)++;
 }
@@ -50,7 +50,11 @@ static int	is_map_rectangle(t_data **data)
 		if ((*data)->map_width == 0)
 			(*data)->map_width = j - i;
 		else if ((*data)->map_width != j - i)
-			return (0);
+		{
+			ft_putstr("Map is not a rectangle");
+			ft_putstr(" or there is some space/tab outside of it\n");
+			return (1);
+		}
 		((*data)->map_height)++;
 		if ((*data)->map[j] == '\0')
 			break ;
@@ -77,13 +81,10 @@ int	is_map_valid(char *map, t_data **data)
 		i++;
 	}
 	if (!is_map_rectangle(data))
-	{
-		ft_putstr("Map is not a rectangle or there is some space/tab outside of it\n");
 		return (0);
-	}
 	if (!is_map_closed(data))
 		return (0);
-	if (((*data)->start) != 1 || ((*data)->collectible) == 0 || ((*data)->exit) == 0)
+	if (((*data)->start) != 1 || ((*data)->colect) == 0 || ((*data)->exit) == 0)
 	{
 		ft_putstr("Check that you have one player, an exit and a collectable\n");
 		return (0);

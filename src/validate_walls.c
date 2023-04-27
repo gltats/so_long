@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_walls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgomes-l <tgomes-l@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: tgomes-l <tgomes-l@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:44:52 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/04/27 19:08:10 by tgomes-l         ###   ########.fr       */
+/*   Updated: 2023/04/27 22:32:44 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static int	right_wall(t_data **data)
 	while (i < (*data)->map_height * ((*data)->map_width + 1))
 	{
 		row_end = i + (*data)->map_width;
-		if ((*data)->map[row_end] == '0' || (*data)->map[row_end] == 'P' || (*data)->map[row_end] == 'C' || (*data)->map[row_end] == 'E')
+		if ((*data)->map[row_end] == '0' || (*data)->map[row_end] == 'P'
+			|| (*data)->map[row_end] == 'C' || (*data)->map[row_end] == 'E')
 			return (0);
 		i += (*data)->map_width + 1;
 	}
@@ -75,7 +76,8 @@ static int	botton_wall(t_data **data)
 	i = length_sum - (*data)->map_width;
 	while (i < length_sum)
 	{
-		if ((*data)->map[i] == '0' || (*data)->map[i] == 'P' || (*data)->map[i] == 'C' || (*data)->map[i] == 'E')
+		if ((*data)->map[i] == '0' || (*data)->map[i] == 'P'
+			|| (*data)->map[i] == 'C' || (*data)->map[i] == 'E')
 			return (0);
 		i++;
 	}

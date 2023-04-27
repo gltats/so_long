@@ -40,7 +40,7 @@ REMOVE = rm -f
 
 # Source files
 SRC = src/so_long.c src/validate.c src/validate_walls.c src/game.c src/validate_path.c\
-		src/screen_render.c src/keys.c src/movements.c src/init_struct.c
+		src/screen_render.c src/screen_render_utils.c src/keys.c src/movements.c src/init_struct.c
 
 # Object files
 OBJ = $(SRC:src/%.c=obj/%.o)
