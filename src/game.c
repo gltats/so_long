@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tatianasofiagomeslima <tatianasofiagome    +#+  +:+       +#+        */
+/*   By: tgomes-l <tgomes-l@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 23:34:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/04/25 13:34:53 by tatianasofi      ###   ########.fr       */
+/*   Updated: 2023/04/27 18:25:08 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	handle_mlx_graphics(t_data	*data)
 	(data)->mlx = mlx_init();
 	ft_get_player(data);
 	create_map_copy(data);
-	// ft_check_validmap(data, data->ply_x, data->ply_y);
 	ft_check_path(data);
 	ft_in_image(data);
 	mlx_hook(data->window, 17, 0, ft_close_window, data);

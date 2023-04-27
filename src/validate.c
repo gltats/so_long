@@ -18,7 +18,7 @@ static int	is_valid_character(char c)
 		return (1);
 	else if (c == ' ' || c == '\t')
 	{
-		ft_putstr("Hey there is a tab or a space in the map, please delete it\n");
+		ft_putstr("Hey there is a tab or a space in the map\n");
 		return (0);
 	}
 	ft_putstr("There is an invalid character on the map\n");
@@ -35,61 +35,58 @@ static void	count_game_objects(char c, t_data **data)
 		((*data)->exit)++;
 }
 
-static int is_map_rectangle(t_data **data)
+//calculates widht and height of the map
+static int	is_map_rectangle(t_data **data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
+
 	i = 0;
-	//calculates widht and height of the map
-		while ((*data)->map[i] != '\0')
-		{
+	while ((*data)->map[i] != '\0')
+	{
 		j = i;
-		//width of the current row
 		while ((*data)->map[j] != '\n' && (*data)->map[j] != '\0')
 			j++;
 		if ((*data)->map_width == 0)
 			(*data)->map_width = j - i;
-		else if ((*data)->map_width != j - i) //line with diferent width
+		else if ((*data)->map_width != j - i)
 			return (0);
 		((*data)->map_height)++;
-		if((*data)->map[j] == '\0')
-			break;
-		i = j + 1; //move to the begining of the next row
+		if ((*data)->map[j] == '\0')
+			break ;
+		i = j + 1;
 	}
 	return (1);
 }
 
 int	is_map_valid(char *map, t_data **data)
 {
-	int i = 0;
-	// Check if the map is empty
+	int	i;
+
+	i = 0;
 	if ((*data)->map[i] == 0)
 	{
 		ft_putstr("The map is empty\n");
 		return (0);
-	} 
-	// Check if the map is valid and count game objects
-	while ((*data)->map[i] != '\0') {
+	}
+	while ((*data)->map[i] != '\0')
+	{
 		if (!is_valid_character(map[i]))
 			return (0);
 		count_game_objects((*data)->map[i], &*data);
 		i++;
 	}
-	//Check if the map is a rectangle
 	if (!is_map_rectangle(data))
 	{
-		ft_putstr("The map is not a rectangle or there is some space/tab outside of the map\n");
+		ft_putstr("Map is not a rectangle or there is some space/tab outside of it\n");
 		return (0);
 	}
-	// Check if the map the map closed with walls / 1
 	if (!is_map_closed(data))
-			return (0);
-	//// Check that there is exactly one start and at least one collectible and exit
+		return (0);
 	if (((*data)->start) != 1 || ((*data)->collectible) == 0 || ((*data)->exit) == 0)
-		{
-			ft_putstr("Please check that you have one player, an exit and a collectable\n");
-			return (0);
-		}
-		
-	return(1);
+	{
+		ft_putstr("Check that you have one player, an exit and a collectable\n");
+		return (0);
+	}
+	return (1);
 }

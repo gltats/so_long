@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tatianasofiagomeslima <tatianasofiagome    +#+  +:+       +#+        */
+/*   By: tgomes-l <tgomes-l@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:32:38 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/04/19 23:35:22 by tatianasofi      ###   ########.fr       */
+/*   Updated: 2023/04/27 18:49:13 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*reading_file(t_data *data, char *buffer)
 	int		len_line;
 	int		len;
 	int		counter;
-	
+
 	len = 0;
 	counter = 0;
 	data->map_2d = ft_split(buffer, '\n');
@@ -41,60 +41,64 @@ static char	*reading_file(t_data *data, char *buffer)
 		map = ft_strjoin(map, "\n");
 		line++;
 	}
-	return(map);
+	return (map);
 }
 
-int manage_fd(char *filename)
+int	manage_fd(char *filename)
 {
-	int     		fd;
-	char    		*buf;
-	static t_data 	*data;
-	ssize_t num_read;
+	int				fd;
+	char			*buf;
+	static t_data	*data;
+	ssize_t			num_read;
+
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
 		perror("open");
-		return(1);
+		return (1);
 	}
 	buf = (char *)malloc(sizeof(char) * 1200);
 	if (buf == NULL)
- 		perror("malloc");
+		perror("malloc");
 	num_read = read(fd, buf, 1200);
 	if (num_read == -1)
 	{
-	    perror("read");
-	    free(buf);
-	    return (1);
+		perror("read");
+		free(buf);
+		return (1);
 	}
 	buf[num_read] = '\0';
 	data = (t_data *)ft_calloc(sizeof(t_data), 1);
 	data->map = buf;
-   	if (!is_map_valid(buf, &data))
-   	{
-   	    free(buf);
-   	    return (1);
-   	}
+	if (!is_map_valid(buf, &data))
+	{
+		free(buf);
+		return (1);
+	}
 	data->map = reading_file(data, buf);
 	handle_mlx_graphics(data);
-    free(buf);
-    close(fd);
+	free(buf);
+	close(fd);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	char	*dot;
+
 	if (argc != 2)
 	{
-		ft_putstr("Please execute ./so_long with a map as argument, example: ./so_long maps/map.ber\n");
+		ft_putstr("Please execute ./so_long with a map as argument\n");
+		ft_putstr("example: ./so_long maps/map.ber\n");
 		return (1);
 	}
-	else	
+	else
 	{	
 		dot = ft_strrchr(argv[1], '.');
 		if (dot == NULL || ft_strcmp(dot, ".ber") != 0)
 		{
-			ft_putstr("Invalid file extension. Only .ber files are supported.\n");
+			ft_putstr("Invalid file extension.\n");
+			ft_putstr("Only .ber files are supported.\n");
 			return (1);
 		}		
 		if (manage_fd(argv[1]) == -1)

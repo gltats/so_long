@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tatianasofiagomeslima <tatianasofiagome    +#+  +:+       +#+        */
+/*   By: tgomes-l <tgomes-l@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:04:34 by tgomes-l          #+#    #+#             */
-/*   Updated: 2023/04/25 13:36:57 by tatianasofi      ###   ########.fr       */
+/*   Updated: 2023/04/27 18:16:44 by tgomes-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 # include "../minilibx/mlx.h"
 
 # define BACKG "./textures/background.xpm"
-# define P_UP "./textures/pacman_up.xpm"//fe
-# define P_DOWN "./textures/pacman_down.xpm"//be
-# define P_LEFT "./textures/pacman_left.xpm"//le
-# define P_RIGHT "./textures/pacman_right.xpm"//re
+# define P_UP "./textures/pacman_up.xpm"
+# define P_DOWN "./textures/pacman_down.xpm"
+# define P_LEFT "./textures/pacman_left.xpm"
+# define P_RIGHT "./textures/pacman_right.xpm"
 # define EXIT "./textures/portal.xpm"
 # define WALL "./textures/wall.xpm"
 # define COLLECTIBLE "./textures/cherry.xpm"
@@ -58,25 +58,24 @@ typedef struct s_data
 	int		ply_x;
 	int		ply_y;
 	int		ply_count;
-	int		start;//eran void,nuevo
-	void	*collectible;//eran void,nuevo
+	int		start;
+	void	*collectible;
 	int		tmp_collectible;
 	int		total_collectible;
-	void	*exit;//eran void,nuevo
+	void	*exit;
 	int		ex_y;
 	int		ex_x;
 	int		col_x;
 	int		col_y;
 	int		ex_counter;
 	int		valid_ex;
-	char	*map;//nuevo
+	char	*map;
 	char	**map_2d;
 	char	**tmp_map_2d;
-	//char 	**tmp_map2d;
 	int		map_x;
 	int		map_y;
-	int		map_height;//nuevo
-	int		map_width;//nuevo
+	int		map_height;
+	int		map_width;
 	int		temp_map_width;
 	int		temp_map_height;
 	int		img_y;
@@ -87,7 +86,7 @@ typedef struct s_data
 }	t_data;
 
 //so_long.c
-int 	manage_fd(char *filename);
+int		manage_fd(char *filename);
 //validate.c
 int		is_map_valid(char *map, t_data **data);
 //validate_walls.c
