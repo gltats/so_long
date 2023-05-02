@@ -111,6 +111,8 @@ valgrind:
 norm:
 	@echo "$(CYAN)\nChecking norm for $(NAME)...$(RESET)\n"
 	@norminette $(SRC) includes/ && echo "$(EMOJI_HAPPY)$(GREEN)Norm check passed!$(RESET)$(EMOJI_CELEBRATE)" || echo "$(EMOJI_SAD)$(RED)Norm check failed!$(RESET)$(EMOJI_SAD)"
+	@echo "$(CYAN)\nChecking norm for LIBFT...$(RESET)\n"
+	@norminette $(SRC) libft/ && echo "$(EMOJI_HAPPY)$(GREEN)Norm check passed!$(RESET)$(EMOJI_CELEBRATE)" || echo "$(EMOJI_SAD)$(RED)Norm check failed!$(RESET)$(EMOJI_SAD)"
 
 re: fclean all
 

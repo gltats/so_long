@@ -53,7 +53,7 @@ static int	is_map_rectangle(t_data **data)
 		{
 			ft_putstr("Map is not a rectangle");
 			ft_putstr(" or there is some space/tab outside of it\n");
-			return (1);
+			return (0);
 		}
 		((*data)->map_height)++;
 		if ((*data)->map[j] == '\0')
